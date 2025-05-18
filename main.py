@@ -25,7 +25,7 @@ async def handle_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await query.answer()
 
     if query.data == "ai_stylist":
-        await query.edit_message_text("Выбран ИИ стилист. Загружаю моду 🤖...")
+        await query.edit_message_text("Выбран ИИ стилист. Щас поможем 🤖...")
         # Тут позже подключим CLIP / YandexGPT
 
 if __name__ == "__main__":
