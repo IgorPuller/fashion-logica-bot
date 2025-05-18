@@ -23,4 +23,11 @@ jobs:
           cd fashion-logica-bot || git clone https://github.com/IgorPuller/fashion-logica-bot.git
           cd fashion-logica-bot
           git pull origin master
-          echo "✅ Code pulled"
+
+          if git diff --name-only HEAD~1 | grep -q requirements.txt; then
+            echo "📦 requirements.txt changed — installing..."
+            pip3 install --user -r requirements.txt
+          else
+            echo "✅ No changes in dependencies"
+          fi
+
