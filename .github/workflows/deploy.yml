@@ -26,6 +26,8 @@ jobs:
           cd fashion-logica-bot
           git pull origin master
 
+          echo "TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }}" > .env
+
           if git diff --name-only HEAD~1 | grep -q requirements.txt; then
             echo "📦 requirements.txt changed — installing..."
             pip3 install --user -r requirements.txt
