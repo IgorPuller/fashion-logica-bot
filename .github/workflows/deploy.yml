@@ -19,6 +19,8 @@ jobs:
         host: 158.160.50.42
         username: yc-user
         key: ${{ secrets.DEPLOY_KEY }}
+        envs: TELEGRAM_TOKEN
+        envs_format: dotenv
         script: |
           cd fashion-logica-bot || git clone https://github.com/IgorPuller/fashion-logica-bot.git
           cd fashion-logica-bot
