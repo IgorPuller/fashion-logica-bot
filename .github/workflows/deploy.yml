@@ -24,6 +24,7 @@ jobs:
         script: |
           cd fashion-logica-bot || git clone https://github.com/IgorPuller/fashion-logica-bot.git
           cd fashion-logica-bot
+          git reset --hard
           git pull origin master
 
           echo "♻ Stopping old container (if exists) ..."
