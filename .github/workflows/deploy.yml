@@ -26,15 +26,17 @@ jobs:
           cd fashion-logica-bot
           git pull origin master
 
-          echo "TELEGRAM_TOKEN=${{ secrets.TELEGRAM_TOKEN }}" > .env
+          echo "♻ Stopping old container (if exists) ..."
+          docker stop fashion-bot || true
+          docker rm fashion-bot || true
 
-          if git diff --name-only HEAD~1 | grep -q requirements.txt; then
-            echo "📦 requirements.txt changed — installing..."
-            pip3 install --user -r requirements.txt
-          else
-            echo "✅ No changes in dependencies"
-          fi
+          echo "📦 Building Docker image..."
+          docker build -t fashion-bot .
 
-          echo "🚀 Starting bot..."
-          nohup python3 main.py > bot.log 2>&1 &
+          echo "🚀 Starting new container..."
+          docker run -d \
+            --name fashion-bot \
+            --restart always \
+            --env-file .env \
+            fashion-bot
 
